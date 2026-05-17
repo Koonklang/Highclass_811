@@ -1,0 +1,899 @@
+:root {
+    --bg-color: #050507;
+    --card-bg: rgba(25, 25, 30, 0.4);
+    --border-color: rgba(255, 255, 255, 0.06);
+    --text-primary: #ffffff;
+    --text-secondary: #9ba1a6;
+    --accent-1: #0834fc;
+    --accent-2: #0400f5;
+    --font-main: 'Outfit', sans-serif;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: var(--bg-color);
+    color: var(--text-primary);
+    font-family: var(--font-main);
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow-x: hidden;
+    position: relative;
+}
+
+/* Background Effects */
+.background-effects {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: -1;
+    overflow: hidden;
+}
+
+.glow-orb {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(80px);
+    opacity: 0.5;
+    animation: float 10s infinite alternate ease-in-out;
+}
+
+.orb-1 {
+    width: 400px;
+    height: 400px;
+    background: radial-gradient(circle, var(--accent-1) 0%, transparent 70%);
+    top: -100px;
+    left: -100px;
+}
+
+.orb-2 {
+    width: 500px;
+    height: 500px;
+    background: radial-gradient(circle, var(--accent-2) 0%, transparent 70%);
+    bottom: -150px;
+    right: -150px;
+    animation-delay: -5s;
+}
+
+@keyframes float {
+    0% {
+        transform: translate(0, 0) scale(1);
+    }
+
+    100% {
+        transform: translate(30px, 50px) scale(1.1);
+    }
+}
+
+/* Container & Card */
+.container {
+    width: 100%;
+    max-width: 1200px;
+    padding: 2rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: filter 1s ease;
+}
+
+.container.blurred {
+    filter: blur(15px);
+    pointer-events: none;
+}
+
+.profile-card {
+    background: transparent;
+    border: none;
+    border-radius: 24px;
+    padding: 3rem;
+    max-width: 500px;
+    width: 100%;
+    box-shadow: none;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    transform-style: preserve-3d;
+    transition: transform 0.1s ease;
+}
+
+/* Image Section */
+.image-wrapper {
+    position: relative;
+    width: 150px;
+    height: 150px;
+    margin-bottom: 2rem;
+    border-radius: 50%;
+    transform: translateZ(30px);
+}
+
+.profile-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 50%;
+    border: 4px solid var(--bg-color);
+    position: relative;
+    z-index: 1;
+}
+
+/* Discord Profile Elements */
+.discord-decoration {
+    position: absolute;
+    top: -8px;
+    left: -8px;
+    width: 166px;
+    height: 166px;
+    z-index: 2;
+    pointer-events: none;
+}
+
+.discord-status {
+    position: absolute;
+    bottom: 2px;
+    right: 2px;
+    width: 32px;
+    height: 32px;
+    background-color: #23a559;
+    /* Online green */
+    border-radius: 50%;
+    border: 6px solid var(--bg-color);
+    /* Cutout effect */
+    z-index: 3;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+}
+
+.discord-status.idle {
+    background-color: #f0b232;
+}
+
+.discord-status.dnd {
+    background-color: #f23f43;
+}
+
+.discord-status.offline {
+    background-color: #80848e;
+}
+
+/* Content Section */
+.content-wrapper {
+    transform: translateZ(20px);
+}
+
+.badge {
+    display: inline-block;
+    padding: 0.4rem 1rem;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 50px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 2px;
+    margin-bottom: 1.5rem;
+    color: var(--text-secondary);
+}
+
+.name {
+    font-size: 2.5rem;
+    font-weight: 800;
+    margin-bottom: 0.5rem;
+    line-height: 1.2;
+    animation: darkFireText 3s ease-in-out infinite alternate;
+}
+
+@keyframes darkFireText {
+    0% {
+        text-shadow: 0 0 8px rgba(0, 0, 0, 0.8),
+            0 0 15px rgba(0, 0, 0, 0.6),
+            0 0 25px rgba(0, 0, 0, 0.4);
+    }
+
+    100% {
+        text-shadow: 0 0 12px rgba(0, 0, 0, 0.9),
+            0 0 20px rgba(0, 0, 0, 0.7),
+            0 0 35px rgba(0, 0, 0, 0.5),
+            0 -5px 15px rgba(0, 0, 0, 0.4);
+    }
+}
+
+.highlight {
+    background: linear-gradient(to right, var(--accent-1), #b5179e);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.title {
+    font-size: 1.2rem;
+    color: var(--text-primary);
+    font-weight: 400;
+    margin-bottom: 1rem;
+}
+
+.bio {
+    color: var(--text-secondary);
+    font-size: 0.95rem;
+    line-height: 1.6;
+    margin-bottom: 2.5rem;
+    max-width: 90%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* Social Links */
+.social-links {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    width: 100%;
+}
+
+.social-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.75rem;
+    flex: 1;
+    padding: 1rem;
+    border-radius: 12px;
+    text-decoration: none;
+    color: var(--text-primary);
+    font-weight: 600;
+    font-size: 0.9rem;
+    transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    position: relative;
+    overflow: hidden;
+}
+
+.social-btn::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0));
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.social-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+    border-color: rgba(255, 255, 255, 0.15);
+}
+
+.social-btn:hover::before {
+    opacity: 1;
+}
+
+.social-btn i {
+    font-size: 1.2rem;
+}
+
+.instagram:hover {
+    background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
+    border-color: transparent;
+}
+
+.facebook:hover {
+    background: #1877F2;
+    border-color: transparent;
+}
+
+/* Responsive */
+@media (max-width: 600px) {
+    .profile-card {
+        padding: 2rem 1.5rem;
+    }
+
+    .name {
+        font-size: 2rem;
+    }
+
+    .social-links {
+        flex-direction: column;
+    }
+
+    .image-wrapper {
+        width: 130px;
+        height: 130px;
+    }
+}
+
+/* Music Controls Container */
+.music-controls {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    z-index: 100;
+}
+
+/* Volume Slider */
+.volume-slider {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 0;
+    height: 4px;
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 5px;
+    outline: none;
+    opacity: 0;
+    transition: width 0.3s ease, opacity 0.3s ease;
+    cursor: pointer;
+}
+
+.music-controls:hover .volume-slider {
+    width: 100px;
+    opacity: 1;
+}
+
+.volume-slider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 15px;
+    height: 15px;
+    border-radius: 50%;
+    background: var(--accent-1);
+    cursor: pointer;
+    box-shadow: 0 0 10px var(--accent-1);
+}
+
+.volume-slider::-moz-range-thumb {
+    width: 15px;
+    height: 15px;
+    border-radius: 50%;
+    background: var(--accent-1);
+    cursor: pointer;
+    box-shadow: 0 0 10px var(--accent-1);
+    border: none;
+}
+
+/* Music Button */
+.music-btn {
+    width: 55px;
+    height: 55px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    color: var(--text-primary);
+    font-size: 1.2rem;
+    cursor: pointer;
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    transition: all 0.3s ease;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+}
+
+.music-btn:hover {
+    transform: scale(1.1);
+    background: rgba(255, 255, 255, 0.1);
+    box-shadow: 0 0 20px rgba(67, 97, 238, 0.4);
+    border-color: var(--accent-1);
+}
+
+.music-btn.playing {
+    color: var(--accent-1);
+    animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+    0% {
+        box-shadow: 0 0 0 0 rgba(67, 97, 238, 0.4);
+    }
+
+    70% {
+        box-shadow: 0 0 0 15px rgba(67, 97, 238, 0);
+    }
+
+    100% {
+        box-shadow: 0 0 0 0 rgba(67, 97, 238, 0);
+    }
+}
+
+@media (max-width: 600px) {
+    .music-controls {
+        bottom: 20px;
+        right: 20px;
+    }
+
+    .music-btn {
+        width: 45px;
+        height: 45px;
+        font-size: 1rem;
+    }
+
+    .volume-slider {
+        width: 80px;
+        opacity: 1;
+        /* Always show on mobile since hover is tricky */
+    }
+}
+
+/* Snow Effect */
+#snow-canvas {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: 0;
+    /* Behind content but above background effects */
+    pointer-events: none;
+}
+
+/* Entry Overlay */
+#entry-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(5, 5, 7, 0.85);
+    z-index: 1000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    transition: opacity 1s ease, visibility 1s ease;
+}
+
+#entry-overlay.hidden {
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+}
+
+.entry-text {
+    font-size: 2.5rem;
+    font-weight: 400;
+    color: var(--text-primary);
+    letter-spacing: 4px;
+    animation: textPulse 2s infinite alternate;
+}
+
+@keyframes textPulse {
+    0% {
+        opacity: 0.5;
+        text-shadow: 0 0 5px rgba(255, 255, 255, 0.1);
+    }
+
+    100% {
+        opacity: 1;
+        text-shadow: 0 0 20px rgba(255, 255, 255, 0.8);
+    }
+}
+
+/* Background GIF */
+.bg-gif-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: -2;
+    /* Behind everything */
+    overflow: hidden;
+    pointer-events: none;
+}
+
+.bg-gif {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 1;
+}
+
+.bg-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: transparent;
+    pointer-events: none;
+}
+
+/* Blue Edge Fire Glow */
+body::after {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    pointer-events: none;
+    z-index: 50;
+    box-shadow: inset 0 0 40px 10px rgba(0, 150, 255, 0.3),
+        inset 0 0 100px 20px rgba(0, 100, 255, 0.15);
+    animation: blueEdgeFire 3s ease-in-out infinite alternate;
+}
+
+@keyframes blueEdgeFire {
+    0% {
+        box-shadow: inset 0 0 30px 5px rgba(0, 150, 255, 0.2),
+            inset 0 0 80px 10px rgba(0, 100, 255, 0.1);
+    }
+
+    100% {
+        box-shadow: inset 0 0 60px 15px rgba(0, 180, 255, 0.5),
+            inset 0 0 150px 30px rgba(0, 120, 255, 0.3);
+    }
+}
+
+/* Swords Decoration */
+.swords-decoration {
+    position: absolute;
+    top: 140px;
+    /* Center of the 150px image is around 75px + padding */
+    left: 50%;
+    pointer-events: none;
+    transform: translateZ(10px);
+    z-index: -1;
+    /* Keep it behind the profile picture but above the card background */
+}
+
+.sword {
+    position: absolute;
+    top: -150px;
+    width: 4px;
+    height: 380px;
+    background: linear-gradient(to bottom, transparent, #00d2ff, #ffffff, #00d2ff, transparent);
+    box-shadow: 0 0 15px #00d2ff, 0 0 30px var(--accent-1);
+    border-radius: 50%;
+}
+
+.sword-left {
+    left: -2px;
+    transform: rotate(45deg);
+    animation: glowPulseSword 2.5s infinite alternate;
+}
+
+.sword-right {
+    left: -2px;
+    transform: rotate(-45deg);
+    animation: glowPulseSword 2.5s infinite alternate-reverse;
+}
+
+@keyframes glowPulseSword {
+    0% {
+        box-shadow: 0 0 10px #00d2ff, 0 0 20px var(--accent-1);
+        opacity: 0.7;
+    }
+
+    100% {
+        box-shadow: 0 0 20px #00d2ff, 0 0 40px #ffffff;
+        opacity: 1;
+    }
+}
+
+/* Wings Decoration */
+.wings-decoration {
+    position: absolute;
+    top: 75px;
+    /* Center of the profile image vertically */
+    left: 0;
+    width: 100%;
+    pointer-events: none;
+    z-index: -2;
+    transform: translateZ(5px);
+}
+
+.wing {
+    position: absolute;
+    top: 0;
+    width: 200px;
+    height: 300px;
+}
+
+.wing-left {
+    right: 50%;
+    transform-origin: right center;
+    animation: flapLeft 4s ease-in-out infinite;
+}
+
+.wing-right {
+    left: 50%;
+    transform-origin: left center;
+    animation: flapRight 4s ease-in-out infinite;
+}
+
+.feather {
+    position: absolute;
+    border-radius: 50% 50% 0 100%;
+    box-shadow: 0 0 15px var(--accent-1);
+    transform-origin: right bottom;
+    background: linear-gradient(to right, var(--accent-1), transparent);
+    opacity: 0.8;
+}
+
+.wing-right .feather {
+    background: linear-gradient(to left, var(--accent-1), transparent);
+    border-radius: 50% 50% 100% 0;
+    transform-origin: left bottom;
+}
+
+/* Wing Left Feathers */
+.wing-left .feather-1 {
+    width: 140px;
+    height: 35px;
+    top: -30px;
+    right: 40px;
+    transform: rotate(-15deg);
+}
+
+.wing-left .feather-2 {
+    width: 110px;
+    height: 30px;
+    top: 10px;
+    right: 30px;
+    transform: rotate(-35deg);
+}
+
+.wing-left .feather-3 {
+    width: 80px;
+    height: 25px;
+    top: 40px;
+    right: 20px;
+    transform: rotate(-55deg);
+}
+
+.wing-left .feather-4 {
+    width: 50px;
+    height: 20px;
+    top: 70px;
+    right: 10px;
+    transform: rotate(-75deg);
+}
+
+/* Wing Right Feathers */
+.wing-right .feather-1 {
+    width: 140px;
+    height: 35px;
+    top: -30px;
+    left: 40px;
+    transform: rotate(15deg);
+}
+
+.wing-right .feather-2 {
+    width: 110px;
+    height: 30px;
+    top: 10px;
+    left: 30px;
+    transform: rotate(35deg);
+}
+
+.wing-right .feather-3 {
+    width: 80px;
+    height: 25px;
+    top: 40px;
+    left: 20px;
+    transform: rotate(55deg);
+}
+
+.wing-right .feather-4 {
+    width: 50px;
+    height: 20px;
+    top: 70px;
+    left: 10px;
+    transform: rotate(75deg);
+}
+
+@keyframes flapLeft {
+
+    0%,
+    100% {
+        transform: rotateY(0deg) rotateZ(0deg) translateX(-60px);
+    }
+
+    50% {
+        transform: rotateY(30deg) rotateZ(-5deg) translateX(-65px);
+    }
+}
+
+@keyframes flapRight {
+
+    0%,
+    100% {
+        transform: rotateY(0deg) rotateZ(0deg) translateX(60px);
+    }
+
+    50% {
+        transform: rotateY(-30deg) rotateZ(5deg) translateX(65px);
+    }
+}
+
+/* -----------------------------
+   Mini Music Player Styles
+------------------------------ */
+.mini-player {
+    margin-top: 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+    z-index: 100;
+    color: white;
+    font-family: 'Outfit', sans-serif;
+    /* No background or container to match the exact transparent look */
+}
+
+.album-art {
+    width: 50px;
+    height: 50px;
+    border-radius: 8px;
+    object-fit: cover;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+}
+
+.player-right-panel {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 2px;
+}
+
+.song-title {
+    font-size: 0.95rem;
+    font-weight: 600;
+    margin-bottom: 2px;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.8);
+}
+
+.player-controls-row {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.time-text {
+    font-size: 0.75rem;
+    color: #b3b3b3;
+    font-weight: 400;
+    font-variant-numeric: tabular-nums;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.8);
+}
+
+.progress-slider {
+    -webkit-appearance: none;
+    width: 200px;
+    height: 3px;
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 2px;
+    outline: none;
+    cursor: pointer;
+}
+
+.progress-slider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: #fff;
+    cursor: pointer;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+}
+
+.progress-slider::-moz-range-thumb {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: #fff;
+    cursor: pointer;
+    border: none;
+}
+
+.playback-controls {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin-left: 5px;
+}
+
+.ctrl-btn {
+    background: none;
+    border: none;
+    color: #b3b3b3;
+    font-size: 0.9rem;
+    cursor: pointer;
+    transition: color 0.2s, transform 0.1s;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.ctrl-btn:hover {
+    color: #ffffff;
+    transform: scale(1.1);
+}
+
+.ctrl-btn.play-btn {
+    color: #ffffff;
+    font-size: 1.1rem;
+}
+
+/* Minimal Volume Control (Top Left with Transparent Frame) */
+.volume-container {
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    padding: 10px 14px;
+    border-radius: 25px;
+    z-index: 1000;
+    transition: background 0.3s, border-color 0.3s;
+}
+
+.volume-container:hover {
+    background: rgba(255, 255, 255, 0.1);
+    border-color: rgba(255, 255, 255, 0.2);
+}
+
+.volume-icon {
+    font-size: 1.5rem;
+    color: #ffffff;
+    cursor: pointer;
+}
+
+.volume-slider-mini {
+    -webkit-appearance: none;
+    width: 0;
+    opacity: 0;
+    height: 5px;
+    background: rgba(255, 255, 255, 0.3);
+    border-radius: 3px;
+    outline: none;
+    cursor: pointer;
+    transition: width 0.3s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.3s ease;
+}
+
+.volume-container:hover .volume-slider-mini {
+    width: 100px;
+    opacity: 1;
+}
+
+.volume-slider-mini::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    background: #fff;
+    cursor: pointer;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+}
+
+.volume-slider-mini::-moz-range-thumb {
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    background: #fff;
+    cursor: pointer;
+    border: none;
+}
