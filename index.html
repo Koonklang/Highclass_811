@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HIGHTCLASS | 811</title>
+    <meta name="description" content="Personal portfolio and introduction website.">
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <!-- FontAwesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <!-- Entry Overlay -->
+    <div id="entry-overlay">
+        <h2 class="entry-text">Click to Enter ...</h2>
+    </div>
+
+    <!-- Background GIF (User can change the src to their own GIF) -->
+    <div class="bg-gif-container">
+        <!-- ใส่ชื่อไฟล์ภาพ GIF หรือลิงก์ของคุณที่บรรทัดด้านล่างตรง src="..." -->
+        <img src="giphy.gif" alt="Animated Background" class="bg-gif">
+        <div class="bg-overlay"></div>
+    </div>
+
+    <!-- Snow Effect -->
+    <canvas id="snow-canvas"></canvas>
+
+    <div class="background-effects">
+        <div class="glow-orb orb-1"></div>
+        <div class="glow-orb orb-2"></div>
+    </div>
+
+    <main class="container blurred">
+        <section class="profile-card" id="tilt-card">
+            <!-- Energy Wings Decoration -->
+            <div class="wings-decoration">
+                <div class="wing wing-left">
+                    <div class="feather feather-1"></div>
+                    <div class="feather feather-2"></div>
+                    <div class="feather feather-3"></div>
+                    <div class="feather feather-4"></div>
+                </div>
+                <div class="wing wing-right">
+                    <div class="feather feather-1"></div>
+                    <div class="feather feather-2"></div>
+                    <div class="feather feather-3"></div>
+                    <div class="feather feather-4"></div>
+                </div>
+            </div>
+
+            <!-- Crossed Glowing Swords Decoration -->
+            <div class="swords-decoration">
+                <div class="sword sword-left"></div>
+                <div class="sword sword-right"></div>
+            </div>
+
+            <div class="image-wrapper discord-profile">
+                <!-- กรอบโปรไฟล์ Discord (Avatar Decoration) สามารถเปลี่ยนลิงก์รูป หรือลบออกได้ -->
+                <img src="" class="discord-decoration" alt="Discord Frame">
+                <img src="profile.jpg" alt="Profile Picture" class="profile-img">
+                <!-- จุดสถานะ Discord (เปลี่ยนคลาสจาก online เป็น idle, dnd, offline ได้) -->
+                <div class="discord-status online" title="Online"></div>
+            </div>
+
+            <div class="content-wrapper">
+                <div class="badge">HIPNOSEN 811</div>
+                <h1 class="name">HIGHTCLASS <span class="highlight"></span></h1>
+                <p class="title">Developer & Designer</p>
+                <p class="bio">สามารถติดต่อได้ทุกช่องทางเลยนะครับ >< <div class="social-links">
+                        <a href="https://www.instagram.com/hightclass.257/" target="_blank" rel="noopener noreferrer"
+                            class="social-btn instagram" aria-label="Instagram">
+                            <i class="fa-brands fa-instagram"></i>
+                            <span>Instagram</span>
+                        </a>
+                        <a href="https://www.facebook.com/share/1CVkSFP6Nh/" target="_blank" rel="noopener noreferrer"
+                            class="social-btn facebook" aria-label="Facebook">
+                            <i class="fa-brands fa-facebook-f"></i>
+                            <span>Facebook</span>
+                        </a>
+            </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Music Player Controls -->
+    <div class="music-controls">
+        <input type="range" id="volume-slider" class="volume-slider" min="0" max="1" step="0.01" value="1"
+            aria-label="Volume Control">
+        <button id="music-toggle" class="music-btn" aria-label="Play Music">
+            <i class="fa-solid fa-music"></i>
+        </button>
+    </div>
+    <audio id="bg-music" loop>
+        <!-- You can replace the src with your own local file like "music.mp3" -->
+        <source src="AKITO - one wish (remix) ft.TRAPMEEN! & PERX [Feb6JO47IJw].mp3" type="audio/mpeg">
+    </audio>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
